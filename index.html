@@ -144,15 +144,15 @@
 
     <div class="location">
       <div class="call-item">Phú Quốc:<span> 02973 75 75 75</span><a href="tel:02973757575" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item"><span>Rạch Giá: 02973 69 69 69</span><a href="tel:02973696969" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item"><span>Hà Tiên: *5656</span><a href="tel:*5656" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item"><span>Cà Mau: 02903 56 56 56</span><a href="tel:02903565656" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item"><span>An Giang: 02973 56 56 56</span><a href="tel:02973565656" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item"><span>Hậu Giang: 02973 95 95 95</span><a href="tel:02973959595" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item"><span>Bạc Liêu: 02913 75 75 75</span><a href="tel:02913757575" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item"><span>Sóc Trăng: 02913 69 69 69</span><a href="tel:02913696969" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item"><span>Vĩnh Long: 02913 59 59 59</span><a href="tel:02913595959" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item"><span>Côn Đảo: *6869</span><a href="tel:*6869" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item">Rạch Giá:<span> 02973 69 69 69</span><a href="tel:02973696969" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item">Hà Tiên:<span> *5656</span><a href="tel:*5656" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item">Cà Mau:<span> 02903 56 56 56</span><a href="tel:02903565656" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item">An Giang:<span> 02973 56 56 56</span><a href="tel:02973565656" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item">Hậu Giang:<span> 02973 95 95 95</span><a href="tel:02973959595" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item">Bạc Liêu:<span> 02913 75 75 75</span><a href="tel:02913757575" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item">Sóc Trăng: <span>02913 69 69 69</span><a href="tel:02913696969" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item">Vĩnh Long:<span> 02913 59 59 59</span><a href="tel:02913595959" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item">Côn Đảo:<span> *6869</span><a href="tel:*6869" class="call-btn">Gọi ngay</a></div>
     </div>
 
     <div class="bottom-section">
@@ -163,11 +163,11 @@
       <div class="qr-wrapper">
         <div class="qr-box">
           <p>App Android</p>
-          <img src="qr-android.png" alt="QR Android">
+          <img src="android.png" alt="QR Android">
         </div>
         <div class="qr-box">
           <p>App iOS</p>
-          <img src="qr-ios.png" alt="QR iOS">
+          <img src="ios.png" alt="QR iOS">
         </div>
       </div>
 
@@ -179,9 +179,9 @@
     function redirectToApp() {
       const ua = navigator.userAgent || navigator.vendor || window.opera;
       if (/android/i.test(ua)) {
-        window.location.href = "https://play.google.com/store/apps/details?id=YOUR_ANDROID_APP_ID";
+        window.location.href = "https://play.google.com/store/search?q=taxi+nam+th%E1%BA%AFng&c=apps&hl=vi";
       } else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
-        window.location.href = "https://apps.apple.com/app/idYOUR_IOS_APP_ID";
+        window.location.href = "https://apps.apple.com/vn/app/taxi-nam-th%E1%BA%AFng/id6475762518?l=vi";
       } else {
         alert("Vui lòng mở bằng điện thoại để cài ứng dụng.");
       }
