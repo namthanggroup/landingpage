@@ -2,51 +2,57 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Taxi điện Nam Thắng - Coming Soon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TAXI ĐIỆN NAM THẮNG</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #e6ffcc;
-      color: #333;
+      background-color: #e6ffcc; /* xanh nõn chuối */
       margin: 0;
       padding: 0;
+      color: #333;
     }
     .container {
-      max-width: 900px;
+      max-width: 800px;
       margin: 0 auto;
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 100vh;
     }
     .title {
       text-align: center;
       font-size: 2em;
       font-weight: bold;
-      margin-bottom: 20px;
       color: #009900;
+      margin-bottom: 20px;
     }
     .location {
-      background-color: #fafff0;
-      padding: 15px;
+      background-color: #f5ffe6;
       border-radius: 10px;
+      padding: 15px;
       margin-bottom: 20px;
     }
     .call-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 8px 0;
-      padding: 6px 10px;
+      padding: 10px 14px;
       background-color: #f0ffe6;
       border-radius: 8px;
+      margin: 6px 0;
+    }
+    .call-item span {
+      display: flex;
+      align-items: center;
+      font-size: 1em;
+    }
+    .call-item span::before {
+      content: "📞";
+      margin-right: 8px;
+      font-size: 1.1em;
     }
     .call-btn {
       background-color: #33cc33;
       color: white;
-      padding: 6px 12px;
+      padding: 6px 14px;
       border-radius: 6px;
       text-decoration: none;
       font-weight: bold;
@@ -57,95 +63,98 @@
       background-color: #28a428;
     }
     .bottom-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .logo {
-      flex: 1 1 40%;
-      max-width: 250px;
-    }
-    .logo img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-    .qr {
-      flex: 1 1 50%;
-      text-align: center;
-    }
-    .qr img {
-      max-width: 180px;
-      height: auto;
-      margin-bottom: 10px;
-    }
-    .qr p {
-      font-size: 1em;
-      color: #006600;
-      font-weight: bold;
-    }
-    @media (max-width: 600px) {
-      .bottom-section {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-      .call-item {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #e6ffcc;
+  border-radius: 10px;
+  padding: 10px 0;
+  gap: 10px;
+}
+
+.logo, .qr {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.logo img {
+  max-width: 160px;
+  height: auto;
+}
+
+.qr img {
+  max-width: 160px;
+  height: auto;
+}
+
+.qr p {
+  text-align: center;
+  margin-top: 5px;
+  font-weight: bold;
+  color: #006600;
+  font-size: 1em;
+}
+
+@media (max-width: 500px) {
+  .logo img {
+    max-width: 140px;
+  }
+  .qr img {
+    max-width: 140px;
+  }
+}
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="title">🚖 Taxi điện Nam Thắng - Coming Soon</div>
+    <div class="title">TAXI ĐIỆN NAM THẮNG</div>
 
     <div class="location">
       <div class="call-item">
-        <span>📞 Phú Quốc: 02973 75 75 75</span>
+        <span>Phú Quốc: 02973 75 75 75</span>
         <a href="tel:02973757575" class="call-btn">Gọi ngay</a>
       </div>
       <div class="call-item">
-        <span>📞 Rạch Giá: 02973 69 69 69</span>
+        <span>Rạch Giá: 02973 69 69 69</span>
         <a href="tel:02973696969" class="call-btn">Gọi ngay</a>
       </div>
       <div class="call-item">
-        <span>📞 Cà Mau: 02903 56 56 56</span>
+        <span>Cà Mau: 02903 56 56 56</span>
         <a href="tel:02903565656" class="call-btn">Gọi ngay</a>
       </div>
       <div class="call-item">
-        <span>📞 An Giang: 02973 56 56 56</span>
+        <span>An Giang: 02973 56 56 56</span>
         <a href="tel:02973565656" class="call-btn">Gọi ngay</a>
       </div>
       <div class="call-item">
-        <span>📞 Hậu Giang: 02973 95 95 95</span>
+        <span>Hậu Giang: 02973 95 95 95</span>
         <a href="tel:02973959595" class="call-btn">Gọi ngay</a>
       </div>
       <div class="call-item">
-        <span>📞 Bạc Liêu: 02913 75 75 75</span>
+        <span>Bạc Liêu: 02913 75 75 75</span>
         <a href="tel:02913757575" class="call-btn">Gọi ngay</a>
       </div>
       <div class="call-item">
-        <span>📞 Sóc Trăng: 02913 69 69 69</span>
+        <span>Sóc Trăng: 02913 69 69 69</span>
         <a href="tel:02913696969" class="call-btn">Gọi ngay</a>
       </div>
       <div class="call-item">
-        <span>📞 Vĩnh Long: 02913 59 59 59</span>
+        <span>Vĩnh Long: 02913 59 59 59</span>
         <a href="tel:02913595959" class="call-btn">Gọi ngay</a>
       </div>
     </div>
 
     <div class="bottom-section">
       <div class="logo">
-        <img src="logo.png" alt="Logo Taxi điện Nam Thắng" />
+        <img src="logo.png" alt="Logo Nam Thắng" />
       </div>
       <div class="qr">
         <img src="qrcode-taiapp.png" alt="QR tải app" />
-        <p>Đặt xe trên App tiện lợi, nhiều ưu đãi<br />
+        <p>Đặt xe trên App <br/>
+		Tiện lợi và nhiều ưu đãi<br/>
         Có mặt trên iOS & Android</p>
       </div>
     </div>
