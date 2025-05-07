@@ -32,10 +32,10 @@
       margin: 5px 0;
     }
     .content {
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.85);
       border-radius: 16px;
       padding: 20px;
-      max-width: 500px;
+      max-width: 550px;
       width: 100%;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
@@ -46,12 +46,44 @@
     .location p {
       margin: 8px 0;
     }
+    .qr-section {
+      margin-top: 25px;
+    }
+    .qr-section h2 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+    .qr-codes {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .qr-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .qr-item img {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 8px;
+    }
+    .qr-item span {
+      font-size: 0.95em;
+      color: #2c3e50;
+    }
     @media (max-width: 600px) {
       h1 {
         font-size: 1.5em;
       }
       .logo {
         width: 120px;
+      }
+      .qr-codes {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
@@ -64,6 +96,7 @@
   <div class="content">
     <h1>Taxi điện Nam Thắng</h1>
     <p><strong>Trang web sẽ ra mắt trong thời gian sớm nhất!</strong></p>
+
     <div class="location">
       <p>📞 Phú Quốc: 02973 75 75 75</p>
       <p>📞 Rạch Giá: 02973 69 69 69</p>
@@ -73,6 +106,17 @@
       <p>📞 Bạc Liêu: 02913 75 75 75</p>
       <p>📞 Sóc Trăng: 02913 69 69 69</p>
       <p>📞 Vĩnh Long: 02913 59 59 59</p>
+    </div>
+
+    <div class="qr-section">
+      <h2>Tải app đặt xe tiện lợi – nhiều ưu đãi!</h2>
+      <div class="qr-codes">
+        <div class="qr-item">
+          <img src="qrcode-taiapp.png" alt="QR App iOS Android">
+          <span>Tải trên iPhone và Android</span>
+        </div>
+        
+      </div>
     </div>
   </div>
 
