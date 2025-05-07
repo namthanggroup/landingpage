@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TAXI ĐIỆN NAM THẮNG</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #e6ffcc; /* xanh nõn chuối */
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      color: #009900;
+      margin-bottom: 10px;
+    }
+
+    .blink-button {
+      background-color: #33cc33;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer;
+      animation: blink 1s infinite;
+      margin: 10px auto 20px;
+      display: block;
+      box-shadow: 0 0 8px #66ff66;
+    }
+
+    @keyframes blink {
+      0%, 100% { background-color: #33cc33; }
+      50% { background-color: #66ff66; }
+    }
+
+    .location {
+      background-color: #f5ffe6;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .call-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background-color: #f0ffe6;
+      border-radius: 8px;
+      margin: 6px 0;
+    }
+
+    .call-item span {
+      font-size: 1em;
+      color: red;
+      font-weight: bold;
+    }
+
+    .call-btn {
+      background-color: #33cc33;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9em;
+      transition: background-color 0.2s ease;
+    }
+
+    .call-btn:hover {
+      background-color: #28a428;
+    }
+
+    .bottom-section {
+      background-color: #e6ffcc;
+      border-radius: 10px;
+      padding: 10px 0;
+      text-align: center;
+    }
+
+    .logo {
+      margin-bottom: 10px;
+    }
+
+    .logo img {
+      max-width: 160px;
+      height: auto;
+    }
+
+    .qr-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: nowrap;
+      flex-direction: row;
+    }
+
+    .qr-box {
+      text-align: center;
+      flex: 1;
+    }
+
+    .qr-box img {
+      max-width: 140px;
+      height: auto;
+    }
+
+    .qr-box p {
+      margin: 5px 0 10px;
+      font-weight: bold;
+      color: #006600;
+    }
+
+    @media (max-width: 500px) {
+      .qr-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .qr-box img {
+        max-width: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title">TAXI ĐIỆN NAM THẮNG</div>
+    <button class="blink-button" onclick="redirectToApp()">Tải Ứng Dụng</button>
+
+    <div class="location">
+      <div class="call-item">Phú Quốc:<span> 02973 75 75 75</span><a href="tel:02973757575" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item"><span>Rạch Giá: 02973 69 69 69</span><a href="tel:02973696969" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item"><span>Hà Tiên: *5656</span><a href="tel:*5656" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item"><span>Cà Mau: 02903 56 56 56</span><a href="tel:02903565656" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item"><span>An Giang: 02973 56 56 56</span><a href="tel:02973565656" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item"><span>Hậu Giang: 02973 95 95 95</span><a href="tel:02973959595" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item"><span>Bạc Liêu: 02913 75 75 75</span><a href="tel:02913757575" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item"><span>Sóc Trăng: 02913 69 69 69</span><a href="tel:02913696969" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item"><span>Vĩnh Long: 02913 59 59 59</span><a href="tel:02913595959" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item"><span>Côn Đảo: *6869</span><a href="tel:*6869" class="call-btn">Gọi ngay</a></div>
+    </div>
+
+    <div class="bottom-section">
+      <div class="logo">
+        <img src="logo.png" alt="Logo Nam Thắng" />
+      </div>
+
+      <div class="qr-wrapper">
+        <div class="qr-box">
+          <p>App Android</p>
+          <img src="qr-android.png" alt="QR Android">
+        </div>
+        <div class="qr-box">
+          <p>App iOS</p>
+          <img src="qr-ios.png" alt="QR iOS">
+        </div>
+      </div>
+
+      <button class="blink-button" onclick="redirectToApp()">Tải Ứng Dụng</button>
+    </div>
+  </div>
+
+  <script>
+    function redirectToApp() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      if (/android/i.test(ua)) {
+        window.location.href = "https://play.google.com/store/apps/details?id=YOUR_ANDROID_APP_ID";
+      } else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+        window.location.href = "https://apps.apple.com/app/idYOUR_IOS_APP_ID";
+      } else {
+        alert("Vui lòng mở bằng điện thoại để cài ứng dụng.");
+      }
+    }
+  </script>
+</body>
+</html>
+s
