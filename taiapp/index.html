@@ -19,9 +19,7 @@
         document.getElementById("message").style.display = "block";
       }
     }
-    document.addEventListener("DOMContentLoaded", function() {
-  redirectToApp();
-});
+    window.onload = redirectToApp;
   </script>
   <style>
     body {
@@ -41,6 +39,6 @@
 </head>
 <body>
   <h2>Đang chuyển hướng tới ứng dụng Taxi Nam Thắng...</h2>
-  <p id="message">Vui lòng mở bằng điện thoại để cài ứng dụng.</p>
+  <p id="message">Vui lòng mở bằng điện thoại để cài App taxi Nam Thắng</p>
 </body>
 </html>
