@@ -19,7 +19,9 @@
         document.getElementById("message").style.display = "block";
       }
     }
-    window.onload = redirectToApp;
+    document.addEventListener("DOMContentLoaded", function() {
+  redirectToApp();
+});
   </script>
   <style>
     body {
