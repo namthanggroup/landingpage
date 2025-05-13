@@ -1,42 +1,72 @@
-<script>
-  const LOG_API_URL = "https://script.google.com/macros/s/AKfycbzuLkzL1YEh6Hv9aPOQGEYStOUH6TTO7P70gSY9c4aS5NFZ_tYy1_C0MVuvdhRkyHE_/exec";
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tải Ứng Dụng Taxi Nam Thắng</title>
+  <script>
+    const LOG_API_URL = "https://script.google.com/macros/s/AKfycbzuLkzL1YEh6Hv9aPOQGEYStOUH6TTO7P70gSY9c4aS5NFZ_tYy1_C0MVuvdhRkyHE_/exec"; // thay bằng URL script của bạn
 
-  async function logVisit() {
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    async function logVisit() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      let ip = "unknown";
 
-    // Lấy IP bằng service bên ngoài
-    let ip = "unknown";
-    try {
-      const res = await fetch("https://api.ipify.org?format=json");
-      const data = await res.json();
-      ip = data.ip;
-    } catch {}
+      try {
+        const res = await fetch("https://api.ipify.org?format=json");
+        const data = await res.json();
+        ip = data.ip;
+      } catch (e) {
+        console.warn("Không lấy được IP:", e);
+      }
 
-    await fetch(LOG_API_URL, {
-      method: "POST",
-      body: JSON.stringify({ ua, ip }),
-      headers: { "Content-Type": "application/json" }
-    });
-  }
-
-  function redirectToApp() {
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
-
-    const androidLink = "https://play.google.com/store/apps/details?id=vntaxi.namthang.passenger&pli=1";
-    const iosLink = "https://apps.apple.com/vn/app/taxi-nam-th%E1%BA%AFng/id6475762518?l=vi";
-
-    if (/android/i.test(ua)) {
-      window.location.href = androidLink;
-    } else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
-      window.location.href = iosLink;
-    } else {
-      document.getElementById("message").style.display = "block";
+      try {
+        await fetch(LOG_API_URL, {
+          method: "POST",
+          body: JSON.stringify({ ua, ip }),
+          headers: { "Content-Type": "application/json" }
+        });
+      } catch (e) {
+        console.warn("Không ghi được log:", e);
+      }
     }
-  }
 
-  // ✅ Khai báo async function
-  window.onload = async () => {
-    await logVisit();             // Ghi log trước
-    setTimeout(redirectToApp, 500); // Sau 500ms thì redirect
-  };
-</script>
+    function redirectToApp() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      const androidLink = "https://play.google.com/store/apps/details?id=vntaxi.namthang.passenger&pli=1";
+      const iosLink = "https://apps.apple.com/vn/app/taxi-nam-th%E1%BA%AFng/id6475762518?l=vi";
+
+      if (/android/i.test(ua)) {
+        window.location.href = androidLink;
+      } else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+        window.location.href = iosLink;
+      } else {
+        document.getElementById("message").style.display = "block";
+      }
+    }
+
+    window.onload = async () => {
+      await logVisit();              // Ghi log truy cập
+      setTimeout(redirectToApp, 500); // Chờ 0.5s rồi chuyển hướng
+    };
+  </script>
+  <style>
+    body {
+      background-color: #f5ffe6;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+    }
+
+    #message {
+      display: none;
+      color: #cc0000;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>Đang chuyển hướng tới ứng dụng Taxi Nam Thắng...</h2>
+  <p id="message">Vui lòng mở bằng điện thoại để cài ứng dụng hoặc quét mã QR bằng điện thoại.</p>
+</body>
+</html>
