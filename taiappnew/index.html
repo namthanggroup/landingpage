@@ -40,10 +40,10 @@
       }
     }
 
-    window.onload = async function () {
-      await logVisit();  // Ghi log trước khi redirect
-      redirectToApp();
-    };
+      window.onload = () => {
+        await logVisit();  // Ghi log trước khi redirect
+  setTimeout(redirectToApp, 500); // Delay 500ms
+};
   </script>
   <style>
     body {
