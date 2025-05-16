@@ -2,20 +2,23 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Test Ghi Log</title>
+  <title>Tải Ứng Dụng Taxi Nam Thăng</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding-top: 50px; }
-    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
-    #status { margin-top: 20px; font-weight: bold; }
+    body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+    #status { margin-top: 20px; font-size: 16px; font-weight: bold; color: #333; }
   </style>
 </head>
 <body>
 
-  <h2>Bấm nút để ghi log test</h2>
-  <button onclick="logTest()">Ghi log test</button>
-  <div id="status"></div>
+  <h2>Đang chuyển hướng tới ứng dụng...</h2>
+  <div id="status">Vui lòng chờ trong giây lát.</div>
 
   <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwoIjNfdDjcupEMYw9CZSKODP80lYP-x5bePPFatVYVXxXjYjv_oEcQV_gj1LiItHAo/exec";
+    const APP_STORE_URL = "https://apps.apple.com/app/idYOUR_APP_ID"; // ← thay bằng ID thật
+    const CH_PLAY_URL = "https://play.google.com/store/apps/details?id=YOUR_APP_PACKAGE"; // ← thay bằng package thật
+
     async function getIP() {
       try {
         const res = await fetch("https://api.ipify.org?format=json");
@@ -26,35 +29,44 @@
       }
     }
 
-    async function logTest() {
-      const ua = navigator.userAgent || "Unknown";
+    function isIOS() {
+      return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    async function logAndRedirect() {
       const ip = await getIP();
-      const payload = { ua, ip };
+      const ua = navigator.userAgent || "unknown";
+      const params = new URLSearchParams({ ip, ua });
 
       const statusEl = document.getElementById("status");
 
       try {
-        const response = await fetch("https://script.google.com/macros/s/AKfycbwoIjNfdDjcupEMYw9CZSKODP80lYP-x5bePPFatVYVXxXjYjv_oEcQV_gj1LiItHAo/exec", {
+        const response = await fetch(SCRIPT_URL, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/x-www-form-urlencoded"
           },
-          body: JSON.stringify(payload)
+          body: params.toString()
         });
 
         if (response.ok) {
-          statusEl.innerText = "✅ Đã ghi log thành công!";
-          statusEl.style.color = "green";
+          statusEl.innerText = "✅ Ghi log thành công. Đang chuyển hướng...";
         } else {
-          statusEl.innerText = "❌ Ghi log thất bại.";
-          statusEl.style.color = "red";
+          statusEl.innerText = "⚠️ Không thể ghi log, vẫn tiếp tục chuyển hướng.";
         }
       } catch (error) {
         console.error(error);
-        statusEl.innerText = "⚠️ Lỗi kết nối khi ghi log.";
-        statusEl.style.color = "orange";
+        statusEl.innerText = "⚠️ Lỗi khi kết nối server, vẫn tiếp tục chuyển hướng.";
       }
+
+      // Redirect sau 1–2 giây
+      setTimeout(() => {
+        window.location.href = isIOS() ? APP_STORE_URL : CH_PLAY_URL;
+      }, 1500);
     }
+
+    // Gọi khi trang được tải
+    window.onload = logAndRedirect;
   </script>
 
 </body>
