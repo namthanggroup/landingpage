@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đang chuyển hướng...</title>
+  <style>
+    body { text-align: center; padding: 50px; font-family: sans-serif; background: #f0fff0; }
+    #message { color: red; font-weight: bold; display: none; }
+  </style>
+</head>
+<body>
+  <h2>Đang chuyển hướng bạn tới ứng dụng Taxi Nam Thắng...</h2>
+  <p id="message">Vui lòng mở trang này bằng điện thoại để cài ứng dụng.</p>
+
+  <script>
+    async function getIP() {
+      try {
+        const res = await fetch("https://api.ipify.org?format=json");
+        const data = await res.json();
+        return data.ip;
+      } catch {
+        return "unknown";
+      }
+    }
+
+    async function logAndRedirect() {
+      const ua = navigator.userAgent || "Unknown";
+      const ip = await getIP();
+
+      const payload = { ua, ip };
+
+      try {
+        await fetch("https://script.google.com/macros/s/AKfycbwoIjNfdDjcupEMYw9CZSKODP80lYP-x5bePPFatVYVXxXjYjv_oEcQV_gj1LiItHAo/exec", {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        });
+      } catch (error) {
+        console.error("Ghi log lỗi:", error);
+      }
+
+      const isAndroid = /android/i.test(ua);
+      const isiOS = /iPad|iPhone|iPod/.test(ua);
+
+      setTimeout(() => {
+        if (isAndroid) {
+          window.location.href = "https://play.google.com/store/apps/details?id=vntaxi.namthang.passenger";
+        } else if (isiOS) {
+          window.location.href = "https://apps.apple.com/vn/app/taxi-nam-th%E1%BA%AFng/id6475762518?l=vi";
+        } else {
+          document.getElementById("message").style.display = "block";
+        }
+      }, 500);
+    }
+
+    window.onload = logAndRedirect;
+  </script>
+</body>
+</html>
