@@ -79,10 +79,26 @@
       font-weight: bold;
       font-size: 0.9em;
       transition: background-color 0.2s ease;
+	   animation: pulse 2s infinite ease-in-out;
+
     }
+	
+	
+    .call-item:nth-child(1) .call-btn { animation-delay: 0s; }
+    .call-item:nth-child(2) .call-btn { animation-delay: 0.2s; }
+    .call-item:nth-child(3) .call-btn { animation-delay: 0.4s; }
+    .call-item:nth-child(4) .call-btn { animation-delay: 0.6s; }
+    .call-item:nth-child(5) .call-btn { animation-delay: 0.8s; }
+    .call-item:nth-child(6) .call-btn { animation-delay: 1.0s; }
+    .call-item:nth-child(7) .call-btn { animation-delay: 1.2s; }
+    .call-item:nth-child(8) .call-btn { animation-delay: 1.4s; }
+    .call-item:nth-child(9) .call-btn { animation-delay: 1.6s; }
+    .call-item:nth-child(10) .call-btn { animation-delay: 1.8s; }
+
 
     .call-btn:hover {
       background-color: #28a428;
+	  
     }
 
     .bottom-section {
@@ -124,25 +140,37 @@
       font-weight: bold;
       color: #006600;
     }
+	@keyframes pulse {
+	  0% { transform: scale(1); background-color: #33cc33; }
+	  50% { transform: scale(1.08); background-color: #5cd65c; }
+	  100% { transform: scale(1); background-color: #33cc33; }
+	}
+	@media (max-width: 500px) {
+	  .qr-wrapper {
+		flex-direction: row; /* giữ ngang */
+		flex-wrap: wrap;     /* nếu quá hẹp sẽ xuống dòng */
+		justify-content: center;
+		gap: 10px;
+	  }
 
-    @media (max-width: 500px) {
-      .qr-wrapper {
-        flex-direction: column;
-        align-items: center;
-      }
+	  .qr-box img {
+		max-width: 80px;
+	  }
 
-      .qr-box img {
-        max-width: 120px;
-      }
-    }
+	  .logo img {
+		max-width: 80px;
+	  }
+	}
+
   </style>
 </head>
 <body>
   <div class="container">
     <div class="title">TAXI ĐIỆN NAM THẮNG</div>
-    <button class="blink-button" onclick="redirectToApp()">Tải Ứng Dụng</button>
+    <button class="blink-button" onclick="redirectToApp()">BẤM VÀO ĐỂ TẢI ỨNG DỤNG ĐẶT XE</button>
 
     <div class="location">
+	    <div style="text-align:center"><h2> SỐ ĐIỆN THOẠI TỔNG ĐÀI CÁC KHU VỰC </h2></div>
       <div class="call-item">1.Phú Quốc:<span> 02973 75 75 75</span><a href="tel:02973757575" class="call-btn">Gọi ngay</a></div>
       <div class="call-item">2.Rạch Giá:<span> 02973 69 69 69</span><a href="tel:02973696969" class="call-btn">Gọi ngay</a></div>
       <div class="call-item">3.Hà Tiên:<span> *5656</span><a href="tel:*5656" class="call-btn">Gọi ngay</a></div>
@@ -171,7 +199,7 @@
         </div>
       </div>
 
-      <button class="blink-button" onclick="redirectToApp()">Tải Ứng Dụng</button>
+      <button class="blink-button" onclick="redirectToApp()">BẤM VÀO ĐỂ TẢI ỨNG DỤNG ĐẶT XE</button>
     </div>
   </div>
 
