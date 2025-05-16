@@ -2,20 +2,97 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Đang chuyển hướng tải ứng dụng Taxi Nam Thăng...</title>
+  <title>Tải Ứng dụng Taxi Nam Thăng</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding-top: 50px; }
-    #msg { font-size: 1.3em; color: #333; }
+    body {
+      background: linear-gradient(120deg, #FFD700 0%, #50C878 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+    }
+    .container {
+      background: rgba(255,255,255,0.88);
+      border-radius: 20px;
+      box-shadow: 0 4px 32px 0 rgba(0,0,0,0.14);
+      padding: 32px 24px 24px 24px;
+      display: flex; flex-direction: column; align-items: center;
+      max-width: 350px;
+    }
+    .logo {
+      width: 84px; height: 84px; margin-bottom: 12px;
+      border-radius: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+      background: #FFF;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .logo img {
+      width: 72px; height: 72px; border-radius: 12px;
+    }
+    .title {
+      font-size: 1.35em; font-weight: 600; margin-bottom: 8px; color: #1c2d19;
+    }
+    .desc {
+      font-size: 1.05em; color: #17411e; margin-bottom: 22px; text-align: center;
+    }
+    .spinner {
+      margin: 14px 0 22px 0;
+      border: 4px solid #e5e5e5;
+      border-top: 4px solid #50C878;
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      animation: spin 1.1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+    .fallback-btn {
+      background: #50C878;
+      color: #fff;
+      padding: 11px 28px;
+      font-size: 1em;
+      border: none;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: 500;
+      margin-top: 10px;
+      box-shadow: 0 2px 8px rgba(80, 200, 120, 0.07);
+      transition: background 0.2s;
+    }
+    .fallback-btn:hover { background: #44b36a; }
+    .note {
+      font-size: 0.9em; color: #666; margin-top: 15px; text-align: center;
+    }
   </style>
 </head>
 <body>
-  <div id="msg">Đang chuyển hướng đến tải ứng dụng...</div>
+  <div class="container">
+    <div class="logo">
+      <img src="https://i.imgur.com/1Q9Z1Zm.png" alt="Taxi Nam Thăng Logo">
+    </div>
+    <div class="title">Chào mừng đến với Taxi Nam Thăng!</div>
+    <div class="desc">Bạn sắp được chuyển hướng để tải ứng dụng chính thức.<br>Vui lòng chờ trong giây lát...</div>
+    <div class="spinner"></div>
+    <button class="fallback-btn" id="redirectBtn" style="display:none">Tải ứng dụng ngay</button>
+    <div class="note">Nếu không tự động chuyển, hãy bấm vào nút phía trên.</div>
+  </div>
   <script>
+    // ---- Các thông số Google Form ----
+    const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdsFEwqMWNbDqVydb6QE31uprjLEkifFlFPKcI6pqi0YPBnww/formResponse";
+    // Entry ID các trường:
+    // Thời gian: 555663806
+    // Thiết bị: 932531256
+    // Hệ điều hành: 1962768952
+    // Trình duyệt: 671708486
+    // IP: 1515038106
+
+    // Link app
     const androidLink = "https://play.google.com/store/apps/details?id=vntaxi.namthang.passenger&pli=1";
     const iosLink = "https://apps.apple.com/vn/app/taxi-nam-th%E1%BA%AFng/id6475762518?l=vi";
 
-    // Nhận diện hệ điều hành
+    // Nhận diện thiết bị
     function detectOS(ua) {
       if (/android/i.test(ua)) return "Android";
       if (/iPad|iPhone|iPod/.test(ua)) return "iOS";
@@ -24,7 +101,6 @@
       if (/Linux/.test(ua)) return "Linux";
       return "Khác";
     }
-
     function detectBrowser(ua) {
       if (/Chrome/.test(ua) && !/Edge/.test(ua) && !/OPR/.test(ua)) return "Chrome";
       if (/Firefox/.test(ua)) return "Firefox";
@@ -34,8 +110,7 @@
       if (/MSIE|Trident/.test(ua)) return "Internet Explorer";
       return "Khác";
     }
-
-    // Lấy IP người dùng qua ipify
+    // Lấy IP
     async function getIP() {
       try {
         const res = await fetch("https://api.ipify.org?format=json");
@@ -53,16 +128,15 @@
       const ip = await getIP();
       const now = new Date().toLocaleString();
 
-      // Google Form setup
-      const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdsFEwqMWNbDqVydb6QE31uprjLEkifFlFPKcI6pqi0YPBnww/formResponse";
+      // Chuẩn bị log gửi Google Form
       const formData = new URLSearchParams();
       formData.append("entry.555663806", now);        // Thời gian
-      formData.append("entry.932531256", ua);          // Thiết bị (User Agent)
-      formData.append("entry.1962768952", os);         // Hệ điều hành
-      formData.append("entry.671708486", browser);     // Trình duyệt
-      formData.append("entry.1515038106", ip);         // IP
+      formData.append("entry.932531256", ua);         // Thiết bị (User Agent)
+      formData.append("entry.1962768952", os);        // Hệ điều hành
+      formData.append("entry.671708486", browser);    // Trình duyệt
+      formData.append("entry.1515038106", ip);        // IP
 
-      // Gửi log (không cần chờ phản hồi)
+      // Gửi log không bị CORS
       fetch(formUrl, {
         method: "POST",
         mode: "no-cors",
@@ -72,15 +146,20 @@
         body: formData.toString()
       });
 
-      // Chuyển hướng sau 1,5 giây
-      setTimeout(function() {
-        let redirectUrl = androidLink;
-        if (os === "iOS") redirectUrl = iosLink;
-        window.location.href = redirectUrl;
-      }, 1500);
+      // Chuyển hướng sau 1.5s
+      let targetLink = androidLink;
+      if (os === "iOS") targetLink = iosLink;
+      setTimeout(() => { window.location.href = targetLink; }, 1500);
+
+      // Hiện nút fallback nếu bị chặn chuyển hướng
+      setTimeout(() => {
+        document.getElementById('redirectBtn').style.display = "inline-block";
+        document.getElementById('redirectBtn').onclick = function() {
+          window.location.href = targetLink;
+        };
+      }, 3500);
     }
 
-    document.getElementById('msg').innerText = "Đang chuyển hướng đến tải ứng dụng Taxi Nam Thăng...";
     window.onload = logAndRedirect;
   </script>
 </body>
