@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TAXI ĐIỆN NAM THẮNG</title>
+
   <style>
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #e6ffcc; /* xanh nõn chuối */
+      background-color: #e6ffcc;
       margin: 0;
       padding: 0;
       color: #333;
@@ -79,88 +80,64 @@
       font-weight: bold;
       font-size: 0.9em;
       transition: background-color 0.2s ease;
-	   animation: pulse 2s infinite ease-in-out;
-
+      animation: pulse 2s infinite ease-in-out;
     }
-	
-	
-    .call-item:nth-child(1) .call-btn { animation-delay: 0s; }
-    .call-item:nth-child(2) .call-btn { animation-delay: 0.2s; }
-    .call-item:nth-child(3) .call-btn { animation-delay: 0.4s; }
-    .call-item:nth-child(4) .call-btn { animation-delay: 0.6s; }
-    .call-item:nth-child(5) .call-btn { animation-delay: 0.8s; }
-    .call-item:nth-child(6) .call-btn { animation-delay: 1.0s; }
-    .call-item:nth-child(7) .call-btn { animation-delay: 1.2s; }
-    .call-item:nth-child(8) .call-btn { animation-delay: 1.4s; }
-    .call-item:nth-child(9) .call-btn { animation-delay: 1.6s; }
-    .call-item:nth-child(10) .call-btn { animation-delay: 1.8s; }
 
+    .call-item:nth-child(n) .call-btn {
+      animation-delay: calc(0.2s * (var(--i)));
+    }
 
     .call-btn:hover {
       background-color: #28a428;
-	  
     }
 
-    .bottom-section {
-      background-color: #e6ffcc;
-      border-radius: 10px;
-      padding: 10px 0;
-      text-align: center;
+    @keyframes pulse {
+      0% { transform: translateY(0); background-color: #33cc33; }
+      50% { transform: translateY(2px); background-color: #5cd65c; }
+      100% { transform: translateY(0); background-color: #33cc33; }
     }
 
-    .logo {
-      margin-bottom: 10px;
+    .footer {
+      background-color: #d6ffd6;
+      padding: 20px 10px;
+      border-radius: 12px;
+      margin-top: 30px;
     }
 
-    .logo img {
-      max-width: 160px;
-      height: auto;
-    }
-
-    .qr-wrapper {
+    .footer-wrapper {
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 20px;
-      flex-wrap: nowrap;
-      flex-direction: row;
+      flex-wrap: wrap;
     }
 
-    .qr-box {
+    .footer-box {
+      flex: 1 1 200px;
       text-align: center;
-      flex: 1;
     }
 
-    .qr-box img {
-      max-width: 140px;
+    .footer-box img {
+      max-width: 200px;
       height: auto;
     }
 
-    .qr-box p {
-      margin: 5px 0 10px;
+    .footer-box p {
+      margin: 5px 0;
       font-weight: bold;
       color: #006600;
     }
-	@keyframes pulse {
-	  0% { transform: scale(1); background-color: #33cc33; }
-	  50% { transform: scale(1.08); background-color: #5cd65c; }
-	  100% { transform: scale(1); background-color: #33cc33; }
-	}
-	@media (max-width: 500px) {
-	  .qr-wrapper {
-		flex-direction: row; /* giữ ngang */
-		flex-wrap: wrap;     /* nếu quá hẹp sẽ xuống dòng */
-		justify-content: center;
-		gap: 10px;
-	  }
 
-	  .qr-box img {
-		max-width: 80px;
-	  }
+    @media (max-width: 500px) {
+      .footer-wrapper {
+        flex-direction: row;
+        justify-content: center;
+      }
 
-	  .logo img {
-		max-width: 80px;
-	  }
-	}
+      .footer-box img {
+        max-width: 100px;
+      }
+    }
 
   </style>
 </head>
@@ -170,30 +147,32 @@
     <button class="blink-button" onclick="redirectToApp()">BẤM VÀO ĐỂ TẢI ỨNG DỤNG ĐẶT XE</button>
 
     <div class="location">
-	    <div style="text-align:center"><h2> SỐ ĐIỆN THOẠI TỔNG ĐÀI CÁC KHU VỰC </h2></div>
-      <div class="call-item">1.Phú Quốc:<span> 02973 75 75 75</span><a href="tel:02973757575" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item">2.Rạch Giá:<span> 02973 69 69 69</span><a href="tel:02973696969" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item">3.Hà Tiên:<span> *5656</span><a href="tel:*5656" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item">4.Cà Mau:<span> 02903 56 56 56</span><a href="tel:02903565656" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item">5.An Giang:<span> 02973 56 56 56</span><a href="tel:02973565656" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item">6.Hậu Giang:<span> 02973 95 95 95</span><a href="tel:02973959595" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item">7.Bạc Liêu:<span> 02913 75 75 75</span><a href="tel:02913757575" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item">8.Sóc Trăng:<span> 02913 69 69 69</span><a href="tel:02913696969" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item">9.Vĩnh Long:<span> 02913 59 59 59</span><a href="tel:02913595959" class="call-btn">Gọi ngay</a></div>
-      <div class="call-item">10.Côn Đảo:<span> *6869</span><a href="tel:*6869" class="call-btn">Gọi ngay</a></div>
+      <div style="text-align:center"><h2> SỐ ĐIỆN THOẠI TỔNG ĐÀI CÁC KHU VỰC </h2></div>
+      <div class="call-item" style="--i:1;">1. Phú Quốc:<span> 02973 75 75 75</span><a href="tel:02973757575" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item" style="--i:2;">2. Rạch Giá:<span> 02973 69 69 69</span><a href="tel:02973696969" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item" style="--i:3;">3. Hà Tiên:<span> *5656</span><a href="tel:*5656" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item" style="--i:4;">4. Cà Mau:<span> 02903 56 56 56</span><a href="tel:02903565656" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item" style="--i:5;">5. An Giang:<span> 02973 56 56 56</span><a href="tel:02973565656" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item" style="--i:6;">6. Hậu Giang:<span> 02973 95 95 95</span><a href="tel:02973959595" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item" style="--i:7;">7. Bạc Liêu:<span> 02913 75 75 75</span><a href="tel:02913757575" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item" style="--i:8;">8. Sóc Trăng:<span> 02913 69 69 69</span><a href="tel:02913696969" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item" style="--i:9;">9. Vĩnh Long:<span> 02913 59 59 59</span><a href="tel:02913595959" class="call-btn">Gọi ngay</a></div>
+      <div class="call-item" style="--i:10;">10. Côn Đảo:<span> *6869</span><a href="tel:*6869" class="call-btn">Gọi ngay</a></div>
     </div>
 
-      <div class="qr-wrapper">
-        <div class="logo">
-          <img src="logo.pngg" alt="Logo Nam Thắng">
+    <button class="blink-button" onclick="redirectToApp()">BẤM VÀO ĐỂ TẢI ỨNG DỤNG ĐẶT XE</button>
+
+    <!-- Footer với logo và qrcode -->
+    <div class="footer">
+      <div class="footer-wrapper">
+        <div class="footer-box">
+          <p>Logo Nam Thắng</p>
+          <img src="logo.png" alt="Logo Nam Thắng">
         </div>
-        <div class="qr-box">
-          <p>Qrcode tải App đặt xe</p>
+        <div class="footer-box">
           <img src="qrcode-taiapp.png" alt="QR tải app">
         </div>
       </div>
-
-      <button class="blink-button" onclick="redirectToApp()">BẤM VÀO ĐỂ TẢI ỨNG DỤNG ĐẶT XE</button>
     </div>
   </div>
 
