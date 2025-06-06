@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Tải Ứng Dụng Taxi Nam Thăng</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body {
+      background: linear-gradient(120deg, #FFD700 0%, #50C878 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+    }
+    .container {
+      background: rgba(255,255,255,0.97);
+      border-radius: 18px;
+      box-shadow: 0 4px 28px 0 rgba(0,0,0,0.13);
+      padding: 36px 22px 28px 22px;
+      display: flex; flex-direction: column; align-items: center;
+      max-width: 370px;
+    }
+    .promo {
+      font-size: 1.13em;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(90deg, #FF9800 25%, #FFD700 75%);
+      border-radius: 12px;
+      padding: 12px 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 12px rgba(255,200,0,0.10);
+      letter-spacing: 0.5px;
+      animation: blink 1s infinite;
+      text-shadow: 0 2px 6px #9a7700;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; filter: brightness(1.15);}
+      60% { opacity: 0.67; filter: brightness(1.6);}
+    }
+    .logo {
+      width: 78px; height: 78px; margin-bottom: 13px;
+      border-radius: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.09);
+      background: #FFF;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .logo img {
+      width: 62px; height: 62px; border-radius: 12px;
+    }
+    .title {
+      font-size: 1.28em; font-weight: 600; margin-bottom: 8px; color: #1c2d19;
+    }
+    .desc {
+      font-size: 1.06em; color: #2c3c29; margin-bottom: 20px; text-align: center;
+    }
+    .spinner {
+      margin: 16px 0 18px 0;
+      border: 4px solid #e5e5e5;
+      border-top: 4px solid #50C878;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      animation: spin 1.05s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
+    }
+    .fallback-btn {
+      background: #50C878;
+      color: #fff;
+      padding: 11px 28px;
+      font-size: 1em;
+      border: none;
+      border-radius: 9px;
+      cursor: pointer;
+      font-weight: 500;
+      margin-top: 12px;
+      box-shadow: 0 2px 8px rgba(80, 200, 120, 0.08);
+      transition: background 0.18s;
+      display: none;
+    }
+    .fallback-btn:hover { background: #44b36a; }
+    .note {
+      font-size: 0.94em; color: #666; margin-top: 15px; text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="promo">🎁 Tải app nhận ngay <span style="color:#E60000; font-size:1.17em;">khuyến mãi lên đến 200.000đ!</span></div>
+    <div class="logo">
+      <img src="logo.png" alt="Taxi Nam Thắng Logo">
+    </div>
+    <div class="title">Taxi điện Nam Thắng cảm ơn bạn!</div>
+    <div class="desc">Đang chuyển hướng đến trang tải ứng dụng.<br>Vui lòng chờ trong giây lát...</div>
+    <div class="spinner"></div>
+    <button class="fallback-btn" id="redirectBtn">Tải ứng dụng ngay</button>
+    <div class="note">Nếu không tự động chuyển, hãy bấm vào nút phía trên.</div>
+  </div>
+  <script>
+    const androidLink = "https://play.google.com/store/apps/details?id=vntaxi.namthang.passenger&pli=1";
+    const iosLink = "https://apps.apple.com/vn/app/taxi-nam-th%E1%BA%AFng/id6475762518?l=vi";
+
+    // Nhận diện hệ điều hành
+    function detectOS(ua) {
+      if (/android/i.test(ua)) return "Android";
+      if (/iPad|iPhone|iPod/.test(ua)) return "iOS";
+      if (/Win/.test(ua)) return "Windows";
+      if (/Mac/.test(ua)) return "macOS";
+      if (/Linux/.test(ua)) return "Linux";
+      return "Khác";
+    }
+    function detectBrowser(ua) {
+      if (/Chrome/.test(ua) && !/Edge/.test(ua) && !/OPR/.test(ua)) return "Chrome";
+      if (/Firefox/.test(ua)) return "Firefox";
+      if (/Safari/.test(ua) && !/Chrome/.test(ua)) return "Safari";
+      if (/Edge/.test(ua)) return "Edge";
+      if (/OPR/.test(ua)) return "Opera";
+      if (/MSIE|Trident/.test(ua)) return "Internet Explorer";
+      return "Khác";
+    }
+    async function getIP() {
+      try {
+        const res = await fetch("https://api.ipify.org?format=json");
+        const data = await res.json();
+        return data.ip;
+      } catch {
+        return "unknown";
+      }
+    }
+
+    async function logAndRedirect() {
+      const ua = navigator.userAgent || "Unknown";
+      const os = detectOS(ua);
+      const browser = detectBrowser(ua);
+      const ip = await getIP();
+      const now = new Date().toLocaleString();
+
+      // Google Form setup
+      const formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSdsFEwqMWNbDqVydb6QE31uprjLEkifFlFPKcI6pqi0YPBnww/formResponse";
+      const formData = new URLSearchParams();
+      formData.append("entry.555663806", now);        // Thời gian
+      formData.append("entry.932531256", ua);          // Thiết bị (User Agent)
+      formData.append("entry.1962768952", os);         // Hệ điều hành
+      formData.append("entry.671708486", browser);     // Trình duyệt
+      formData.append("entry.1515038106", ip);         // IP
+
+      // Gửi log (không cần chờ phản hồi)
+      fetch(formUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: formData.toString()
+      });
+
+      // Chuyển hướng sau 2 giây (2000ms)
+      setTimeout(function() {
+        let redirectUrl = androidLink;
+        if (os === "iOS") redirectUrl = iosLink;
+        window.location.href = redirectUrl;
+      }, 2500);
+
+      // Hiện nút fallback nếu vẫn chưa chuyển (phòng trường hợp bị chặn)
+      setTimeout(function() {
+        document.getElementById('redirectBtn').style.display = "inline-block";
+        document.getElementById('redirectBtn').onclick = function() {
+          let redirectUrl = androidLink;
+          if (os === "iOS") redirectUrl = iosLink;
+          window.location.href = redirectUrl;
+        };
+      }, 3500);
+    }
+
+    window.onload = logAndRedirect;
+  </script>
+</body>
+</html>
